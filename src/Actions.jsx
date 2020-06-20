@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "antd";
 import styled from "styled-components";
+import StoryContext from "./Context/StoryContext";
 
 const Tale = styled.div`
   font-size: 30px;
@@ -21,15 +22,32 @@ const Title = styled.span`
   display: flex;
 `;
 
-export const Actions = ({ story }) => {
+export const Actions = () => {
+  const { story, prologueDone, dispatch } = useContext(StoryContext);
+
+  const handleChange = () => {
+    dispatch({ type: "prologueDoneChange" });
+  };
+
+  if (prologueDone === false) {
+    return (
+      <div>
+        <Tale>
+          <Title>{story.prologue.title}</Title>
+          <p>{story.prologue.text}</p>
+          <Button onClick={handleChange}>Let's play!</Button>
+        </Tale>
+      </div>
+    );
+  }
+
+
   return (
     <div>
       <Tale>
-        <Title>{story.prologue.title}</Title>
-        <p>{story.prologue.text}</p>
+        <Title>{story.chapters[0].prologue.title}</Title>
+        <p>{story.chapters[0].prologue.text}</p>
       </Tale>
-      <Button>Back</Button>
-      <Button>Next</Button>
     </div>
   );
 };
