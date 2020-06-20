@@ -23,14 +23,31 @@ const Title = styled.span`
 `;
 
 export const Actions = () => {
-  const ctx = useContext(StoryContext);
+  const { story, prologueDone, dispatch } = useContext(StoryContext);
+
+  const handleChange = () => {
+    dispatch({ type: "prologueDoneChange" });
+  };
+
+  if (prologueDone === false) {
+    return (
+      <div>
+        <Tale>
+          <Title>{story.prologue.title}</Title>
+          <p>{story.prologue.text}</p>
+          <Button onClick={handleChange}>Let's play!</Button>
+        </Tale>
+      </div>
+    );
+  }
+
+
   return (
     <div>
       <Tale>
-        <Title>{ctx.prologue.title}</Title>
-        <p>{ctx.prologue.text}</p>
+        <Title>{story.chapters[0].prologue.title}</Title>
+        <p>{story.chapters[0].prologue.text}</p>
       </Tale>
-      <Button>«Back</Button>
     </div>
   );
 };

@@ -1,27 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import "./App.css";
 import { Header } from "./Header";
 import { Actions } from "./Actions";
 import "antd/dist/antd.css";
 import StoryContext from "./Context/StoryContext";
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "initStory":
+      return { ...state, story: action.payload };
+    case "nextChapter":
+      return { ...state, chapterId: state.chapterId + 1 };
+    case "nextQuestion":
+      return { ...state, questionId: state.questionId + 1 };
+    case "prologueDoneChange":
+      return { ...state, prologueDone: true };
+    default:
+      throw new Error();
+  }
+};
+
 const App = () => {
-  const [stories, setStories] = useState();
-  const [question, setQuestion] = useState(1);
+  const [state, dispatch] = useReducer(reducer, {
+    story: null,
+    chapterId: 1,
+    questionId: 1,
+    prologueDone: false,
+  });
 
   useEffect(() => {
     fetch("data-en_us.json")
       .then((response) => response.json())
       .then((stories) => {
-        setStories(stories);
+        dispatch({ type: "initStory", payload: stories });
       });
   }, []);
 
   return (
-    <StoryContext.Provider value={stories}>
+    <StoryContext.Provider value={{ ...state, dispatch }}>
       <div className="App">
         <Header />
-        {stories && <Actions />}
+        {state.story && <Actions />}
       </div>
     </StoryContext.Provider>
   );
