@@ -28,7 +28,7 @@ export const Actions = ({ story }) => {
         <Title>{story.prologue.title}</Title>
         <p>{story.prologue.text}</p>
       </Tale>
-      <Button>Back</Button>
+      <Button>«Back</Button>
     </div>
   );
 };
