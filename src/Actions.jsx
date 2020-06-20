@@ -29,7 +29,6 @@ export const Actions = ({ story }) => {
         <p>{story.prologue.text}</p>
       </Tale>
       <Button>Back</Button>
-      <Button>Next</Button>
     </div>
   );
 };
