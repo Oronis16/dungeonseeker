@@ -3,6 +3,7 @@ import "./App.css";
 import { Header } from "./Header";
 import { Actions } from "./Actions";
 import "antd/dist/antd.css";
+import StoryContext from "./Context/StoryContext";
 
 const App = () => {
   const [stories, setStories] = useState();
@@ -15,16 +16,14 @@ const App = () => {
         setStories(stories);
       });
   }, []);
-  console.log(stories);
-
-  if (stories) {
-  }
 
   return (
-    <div className="App">
-      <Header />
-      {stories && <Actions story={stories} />}
-    </div>
+    <StoryContext.Provider value={stories}>
+      <div className="App">
+        <Header />
+        {stories && <Actions />}
+      </div>
+    </StoryContext.Provider>
   );
 };
 

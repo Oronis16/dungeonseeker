@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "antd";
 import styled from "styled-components";
+import StoryContext from "./Context/StoryContext";
 
 const Tale = styled.div`
   font-size: 30px;
@@ -21,12 +22,13 @@ const Title = styled.span`
   display: flex;
 `;
 
-export const Actions = ({ story }) => {
+export const Actions = () => {
+  const ctx = useContext(StoryContext);
   return (
     <div>
       <Tale>
-        <Title>{story.prologue.title}</Title>
-        <p>{story.prologue.text}</p>
+        <Title>{ctx.prologue.title}</Title>
+        <p>{ctx.prologue.text}</p>
       </Tale>
       <Button>«Back</Button>
     </div>
