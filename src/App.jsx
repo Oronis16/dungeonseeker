@@ -9,15 +9,15 @@ const App = () => {
   const [question, setQuestion] = useState(1);
 
   useEffect(() => {
-    fetch("story.json")
+    fetch("data-en_us.json")
       .then((response) => response.json())
       .then((stories) => {
         setStories(stories);
       });
   }, []);
+  console.log(stories);
 
   if (stories) {
-    
   }
 
   return (

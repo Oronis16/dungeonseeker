@@ -1,0 +1,77 @@
+{
+  "$schema": "./dungeonseeker-schema.json",
+  "prologue": {
+    "title": "Prologue",
+    "text": "Welcome Stranger! This is my first webapplication. I hope you will enjoy this adventure with me."
+  },
+  "chapters": [
+    {
+      "id": 1, 
+      "prologue": {
+        "title": "Chapter 1",
+        "text": "Some birds are singing and the sun's rays coming through on the window. You can feel its warm touch on your face."
+      },
+      "stories": [
+        {
+          "id": 1,
+          "title": "In the Woods",
+          "text": "It is a really cold morning today. Your head hurt as hell and you can not remember anything. You decided to descover where you are and what happend. As you open your eyes, you can see that you are in an old wood house. It is in a bad condition, but there is a fireplace where the fire was already gone, and you are laying on a dirty bed. You can check the outside or you can look around better in the room.",
+          "question": "Which you choose?",
+          "prevStoryRef": null,
+          "answers": [
+            {
+              "id": 1,
+              "text": "I look out on the window.",
+              "storyRef": 1,
+              "nextStoryId": 2
+            },
+            {
+              "id": 2,
+              "text": "I can see something under the bed.",
+              "storyRef": 1,
+              "nextStoryId": 3
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "text": "You are walking to the window and you see a beautfil view on a lake and lots of tree aournd the house. This place is in a forest.",
+          "prevStoryRef": 1
+        },
+        {
+          "id": 3,
+          "text": "You look around but there is not too much things in this room, but it is a chest under your bed. You open it and there are clothes in there.",
+          "question": "Which clothes do you choose?",
+          "answers": [
+            {
+              "id": 3,
+              "text": "I choose a bit used green shirt, a gray pants and there is some boots too.",
+              "storyRef": 3,
+              "nextStoryId": 4
+            },
+            {
+              "id": 4,
+              "text": "I choose a black cloak with a little hole in it and there are taut pants as well with a high stem boots.",
+              "storyRef": 3,
+              "nextStoryId": 5
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Melee",
+          "text": "As you started to take out the clothes, you can feel something under them. It is a sword in a good condition. You are very happy because you can use it under your journey. The rest of the day you put on the clothes, got some foods and water."
+        },
+        {
+          "id": 5,
+          "title": "Mage",
+          "text": "As you started to take out the clothes, you can feel something under them. It is a book and a wand in a good condition. You are very happy because you can use it under your journey. The rest of the day you put on the clothes, got some foods and water."
+        }
+      ]
+    }
+  ],
+  "epilogue": {
+    "title": "Epilogue",
+    "text": "Congratulation! You choosed your character. The journey has been started. I hope you will have some fun!"
+  }
+}

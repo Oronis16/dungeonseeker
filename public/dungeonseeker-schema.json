@@ -1,0 +1,103 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "prologue": {
+            "type": "object",
+            "description": "This is how the book should start with",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "the title of the prologue",
+                    "examples": ["Prologue"]
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The written text content of the Prologue"
+                }
+            },
+            "additionalProperties": false
+        },
+        "chapters": {
+            "type": "array",
+            "description": "the book contains of several chapters. Each chapter features dozens of stories driving the book and the player",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": { "type": "number" },
+                    "prologue": {
+                        "type": "object",
+                        "properties": {
+                            "title": {
+                                "type": "string",
+                                "examples": ["Chapter 1"]
+                            },
+                            "text": { "type": "string" }
+                        }
+                    },
+                    "epilogue": {
+                        "type": "object",
+                        "properties": {
+                            "title": { "type": "string" },
+                            "text": { "type": "string" }
+                        }
+                    },
+                    "stories": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "description": "this id should be unique accross the game"
+                                },
+                                "prevStoryRef": { "type": ["number", "null"] },
+                                "title": { "type": "string" },
+                                "text": { "type": "string" },
+                                "question": { "type": "string" },
+                                "answers": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": { "type": "number" },
+                                            "storyRef": {
+                                                "type": "number",
+                                                "description": "this should be a reference to the story&question for which this is an answer. This can be used within the code"
+                                            },
+                                            "text": { "type": "string" },
+                                            "nextStoryId": {
+                                                "type": "number",
+                                                "description": "since every story will have a unique id accross the game this numeric value will tell the game which story should be the next when the user picks this answer"
+                                            }
+                                        },
+                                        "additionalProperties": false
+                                    }
+                                }
+                            },
+                            "additionalProperties": false
+                        }
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "epilogue": {
+            "type": "object",
+            "description": "This is how the book should end with",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "the title of the epilogue",
+                    "examples": ["Epilogue"]
+                },
+                "text": {
+                    "type": "string",
+                    "description": "The written text content of the Epilogue"
+                }
+            },
+            "additionalProperties": false
+        },
+        "additionalProperties": false
+    }
+}

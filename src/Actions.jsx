@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "antd";
 import styled from "styled-components";
 
@@ -12,6 +12,7 @@ const Tale = styled.div`
   background-color: #f0fff0;
   font-weight: bold;
   flex-direction: column;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 `;
 
 const Title = styled.span`
@@ -24,8 +25,8 @@ export const Actions = ({ story }) => {
   return (
     <div>
       <Tale>
-        <Title>PROLOUGE</Title>
-        <p>{story.prolouge}</p>
+        <Title>{story.prologue.title}</Title>
+        <p>{story.prologue.text}</p>
       </Tale>
       <Button>Back</Button>
       <Button>Next</Button>
