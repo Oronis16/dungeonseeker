@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Button } from "antd";
 import styled from "styled-components";
 import StoryContext from "./Context/StoryContext";
+import { Chapter } from "./Chapters/Chapter";
 
 const Tale = styled.div`
   font-size: 30px;
@@ -23,7 +24,7 @@ const Title = styled.span`
 `;
 
 export const Actions = () => {
-  const { story, prologueDone, dispatch } = useContext(StoryContext);
+  const { story, dispatch, prologueDone } = useContext(StoryContext);
 
   const handleChange = () => {
     dispatch({ type: "prologueDoneChange" });
@@ -41,13 +42,5 @@ export const Actions = () => {
     );
   }
 
-
-  return (
-    <div>
-      <Tale>
-        <Title>{story.chapters[0].prologue.title}</Title>
-        <p>{story.chapters[0].prologue.text}</p>
-      </Tale>
-    </div>
-  );
+  return <Chapter />;
 };
