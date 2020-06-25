@@ -1,26 +1,34 @@
 import React, { useContext } from "react";
 import StoryContext from "../Context/StoryContext";
 import { Button } from "antd";
+import { Tale, Title } from "../Styled-components/styled";
+import { Answers } from "../Answers/Answers";
 
 export const Question = ({ chap }) => {
   const { questionId, dispatch } = useContext(StoryContext);
 
-  console.log(chap);
-
-  let action = chap.stories.find((action) => action.id === questionId);
-  console.log(action);
-  console.log(action.id);
+  let story = chap.stories.find((story) => story.id === questionId);
 
   const handleChange = () => {
     dispatch({ type: "nextQuestion" });
   };
 
+  if (story.answers == null) {
+    return (
+      <Tale>
+        <Title>{story.title}</Title>
+        <p>{story.text}</p>
+        <p>{story.question}</p>
+        <Button onClick={handleChange}>Next</Button>
+      </Tale>
+    );
+  }
   return (
-    <div>
-      <div>{action.title}</div>
-      <p>{action.text}</p>
-      <p>{action.question}</p>
-      <Button onClick={handleChange}>Next</Button>
-    </div>
+    <Tale>
+      <Title>{story.title}</Title>
+      <p>{story.text}</p>
+      <p>{story.question}</p>
+      <Answers choices={story} />
+    </Tale>
   );
 };

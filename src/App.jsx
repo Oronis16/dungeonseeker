@@ -4,7 +4,6 @@ import { Header } from "./Header";
 import { Actions } from "./Actions";
 import "antd/dist/antd.css";
 import StoryContext from "./Context/StoryContext";
-import { Chapter } from "./Chapters/Chapter";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -13,7 +12,11 @@ const reducer = (state, action) => {
     case "nextChapter":
       return { ...state, chapterId: state.chapterId + 1 };
     case "nextQuestion":
-      return { ...state, questionId: state.questionId + 1 };
+      if (action.payload == null || action.payload.nextQuestion == null) {
+        return { ...state, questionId: state.questionId + 1 };
+      } else {
+        return { ...state, questionId: action.payload.nextQuestion };
+      }
     case "prologueDoneChange":
       return { ...state, prologueDone: true };
     case "chapterProlDoneChange":

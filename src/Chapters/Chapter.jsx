@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import StoryContext from "../Context/StoryContext";
 import { Button } from "antd";
 import { Question } from "../Questions/Question";
+import { Tale, Title } from "../Styled-components/styled";
 
 export const Chapter = () => {
   const { story, chapterId, dispatch, chapterProlDone } = useContext(
@@ -16,11 +17,11 @@ export const Chapter = () => {
 
   if (chapterProlDone === false) {
     return (
-      <div>
-        <div>{chapter.prologue.title}</div>
+      <Tale>
+        <Title>{chapter.prologue.title}</Title>
         <p>{chapter.prologue.text}</p>
         <Button onClick={handleChange}>Next</Button>
-      </div>
+      </Tale>
     );
   }
 
