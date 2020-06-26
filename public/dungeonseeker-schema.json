@@ -67,7 +67,7 @@
                                             },
                                             "text": { "type": "string" },
                                             "nextStoryId": {
-                                                "type": "number",
+                                                "type": ["number", "string"],
                                                 "description": "since every story will have a unique id accross the game this numeric value will tell the game which story should be the next when the user picks this answer"
                                             }
                                         },

@@ -5,22 +5,27 @@ import { Answer, Radio } from "../Styled-components/styled";
 export const Answers = ({ choices }) => {
   const { dispatch } = useContext(StoryContext);
 
+  console.log("Choices", choices);
+
   const handleChange = (answer) => {
-    dispatch({ type: "nextQuestion", payload: answer.nextStoryId });
+    dispatch({
+      type: "nextQuestion",
+      payload: { nextQuestion: answer.nextStoryId },
+    });
   };
 
   return (
     <div>
-      {choices.answers.map((answer) => {
+      {choices.map((answer, idx) => {
         return (
-          <Radio>
+          <Radio for={`answer-${answer.id}`} key={idx}>
             <input
-              id="answer"
+              id={`answer-${answer.id}`}
               type="radio"
-              name="group"
+              name="answer-group"
               onChange={() => handleChange(answer)}
             />
-            <Answer for="answer">{answer.text}</Answer>
+            <Answer for={`answer-${answer.id}`}>{answer.text}</Answer>
           </Radio>
         );
       })}
